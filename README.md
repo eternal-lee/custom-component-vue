@@ -81,3 +81,5 @@ yarn build
 ```
 yarn lint
 ```
+
+* 注意： 发布npm 需要先运行 -> npm run lib
