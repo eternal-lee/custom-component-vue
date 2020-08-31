@@ -1,10 +1,10 @@
 <template>
   <div
     class="buoyPopup"
-    :class="addclass"
+    :class="customClass"
     @click="clickEvent"
     @touchstart="ontouchstart"
-    @touchmove="ontouchmove"
+    @touchmove.prevent.stop="ontouchmove"
     @touchend="ontouchend"
     :style="{
       width: itemWidth + 'px',
@@ -19,10 +19,16 @@
 </template>
 
 <script>
+/* customClass : 自定义calss名
+ * itemWidth/itemHeight: 浮标宽度/高度
+ * gapWidth: 浮标距离左右边框的距离
+ * coefficientHeight： 初始化top位置 位于屏幕高度%比
+ * distanceMultiple: 浮标距离右边框距离的倍数
+ */
 export default {
   name: "buoy-popup",
   props: {
-    addclass: {
+    customClass: {
       type: String,
       default: ""
     },
@@ -49,6 +55,12 @@ export default {
       default: () => {
         return 0.5;
       }
+    },
+    distanceMultiple: {
+      type: Number,
+      default: () => {
+        return 2;
+      }
     }
   },
   data() {
@@ -61,7 +73,8 @@ export default {
     // 初始化位置
     this.clientWidth = document.documentElement.clientWidth;
     this.clientHeight = document.documentElement.clientHeight;
-    this.left = this.clientWidth - this.itemWidth - this.gapWidth * 2;
+    this.left =
+      this.clientWidth - this.itemWidth - this.gapWidth * this.distanceMultiple;
     this.top = this.clientHeight * this.coefficientHeight;
   },
   methods: {
@@ -96,7 +109,10 @@ export default {
       e.stopPropagation();
       this.$refs.buoyPopup.style.transition = "all 0.3s";
       if (this.left > this.clientWidth / 2) {
-        this.left = this.clientWidth - this.itemWidth - this.gapWidth * 2;
+        this.left =
+          this.clientWidth -
+          this.itemWidth -
+          this.gapWidth * this.distanceMultiple;
       } else {
         this.left = this.gapWidth;
       }
