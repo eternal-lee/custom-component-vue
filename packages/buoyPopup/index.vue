@@ -77,6 +77,16 @@ export default {
       this.clientWidth - this.itemWidth - this.gapWidth * this.distanceMultiple;
     this.top = this.clientHeight * this.coefficientHeight;
   },
+  mounted() {
+    this.$nextTick(() => {
+      const body = document.querySelector("body");
+      if (body.append) {
+        body.append(this.$el);
+      } else {
+        body.appendChild(this.$el);
+      }
+    });
+  },
   methods: {
     clickEvent() {
       this.$emit("clickEvent");
