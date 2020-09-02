@@ -13,6 +13,8 @@ if (typeof window != "undefined" && window.Vue) {
   install(window.Vue);
 }
 
+export { customToast, buoyPopup };
+
 export default {
   install,
   customToast,
