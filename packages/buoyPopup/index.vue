@@ -25,6 +25,7 @@
  * coefficientHeight： 初始化top位置 位于屏幕高度%比
  * distanceMultiple: 浮标距离右边框距离的倍数
  */
+import { PortalMixin } from "./../mixins/portal";
 export default {
   name: "buoy-popup",
   props: {
@@ -61,6 +62,11 @@ export default {
       default: () => {
         return 2;
       }
+    },
+    // 挂载到指定容器 默认body上
+    getContainer: {
+      type: [String, Function],
+      default: "body"
     }
   },
   data() {
@@ -69,6 +75,7 @@ export default {
       top: 0
     };
   },
+  mixins: [PortalMixin()],
   created() {
     // 初始化位置
     this.clientWidth = document.documentElement.clientWidth;
@@ -76,16 +83,6 @@ export default {
     this.left =
       this.clientWidth - this.itemWidth - this.gapWidth * this.distanceMultiple;
     this.top = this.clientHeight * this.coefficientHeight;
-  },
-  mounted() {
-    this.$nextTick(() => {
-      const body = document.querySelector("body");
-      if (body.append) {
-        body.append(this.$el);
-      } else {
-        body.appendChild(this.$el);
-      }
-    });
   },
   methods: {
     clickEvent() {
@@ -109,7 +106,7 @@ export default {
         if (touch.clientY - this.itemHeight / 2 < 0) {
           top = 0;
         } else if (touch.clientY + this.itemHeight / 2 > this.clientHeight) {
-          top = this.clientHeight - this.itemHeight + this.gapWidth;
+          top = this.clientHeight - this.itemHeight;
         }
         this.left = left;
         this.top = top;
@@ -144,7 +141,7 @@ export default {
   z-index: 20;
   transition: all 0.3s;
   position: fixed;
-  background: #f0f;
   border-radius: 50%;
+  cursor: pointer;
 }
 </style>

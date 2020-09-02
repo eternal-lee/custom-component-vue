@@ -4,9 +4,10 @@ import App from "./App.vue";
 import router from "./router/index";
 import store from "./store/index";
 
-import buoyPopup from "./../packages/index.js";
+import customComponent from "./../packages/index.js";
 
-Vue.use(buoyPopup.buoyPopup);
+Vue.use(customComponent.buoyPopup);
+Vue.use(customComponent.customToast);
 Vue.config.productionTip = false;
 
 console.log(process.env);

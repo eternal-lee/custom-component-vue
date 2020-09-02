@@ -1,6 +1,7 @@
 import buoyPopup from "./buoyPopup/index.js";
+import customToast from "./customToast/index";
 
-const components = { buoyPopup };
+const components = { buoyPopup, customToast };
 
 const install = function(Vue) {
   Object.keys(components).map(component => {
