@@ -2,6 +2,9 @@
 node_modules/
 src/
 public/
+.env.development
+.env.test
+.env.production
 vue.config.js
 babel.config.js
 *.map
