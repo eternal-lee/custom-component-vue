@@ -20,6 +20,8 @@ import customComVue from 'custom-component-vue'
 
 import 'custom-component-vue/lib/custom-component-vue.css'
 
+Vue.use(customComponent.customToast)
+
 Vue.use(customComVue.buoyPopup)
 
 // OR
@@ -35,7 +37,13 @@ Vue.component('buoy-popup', customComVue.buoyPopup)
 ```
 <buoy-popup></buoy-popup>
 ```
+```
+this.$showMsgToast[`${type}`](msg)
 
+// OR 
+
+this.$showMsgToast({type: `${type}`,msg: `${msg]`)
+```
 > 组件模板：
 
 ```

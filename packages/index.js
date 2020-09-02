@@ -1,7 +1,7 @@
 import buoyPopup from "./buoyPopup/index.js";
-import customToast from "./customToast/index";
+import customToast from "./customToast/index.js";
 
-const components = { buoyPopup, customToast };
+const components = { buoyPopup };
 
 const install = function(Vue) {
   Object.keys(components).map(component => {
@@ -15,5 +15,6 @@ if (typeof window != "undefined" && window.Vue) {
 
 export default {
   install,
+  customToast,
   ...components
 };

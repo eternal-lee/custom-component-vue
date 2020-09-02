@@ -5,7 +5,7 @@ import router from "./router/index";
 import store from "./store/index";
 
 import customComponent from "./../packages/index.js";
-
+console.log(customComponent);
 Vue.use(customComponent.buoyPopup);
 Vue.use(customComponent.customToast);
 Vue.config.productionTip = false;
