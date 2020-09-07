@@ -15,16 +15,16 @@
 
 <script>
 export default {
-  name: "home",
+  name: 'home',
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
-    };
+      msg: 'Welcome to Your Vue.js App'
+    }
   },
   mounted() {
-    this.$showMsgToast({ type: "error", msg: "error" });
+    this.$showMsgToast({ type: 'error', msg: 'error' })
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

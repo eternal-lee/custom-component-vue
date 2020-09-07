@@ -2,6 +2,8 @@
 node_modules/
 src/
 public/
+package-lock.json
+yarn.lock
 .env.development
 .env.test
 .env.production

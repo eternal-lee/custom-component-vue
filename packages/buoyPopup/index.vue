@@ -25,115 +25,115 @@
  * coefficientHeight： 初始化top位置 位于屏幕高度%比
  * distanceMultiple: 浮标距离右边框距离的倍数
  */
-import { PortalMixin } from "./../mixins/portal";
+import { PortalMixin } from './../mixins/portal'
 export default {
-  name: "buoy-popup",
+  name: 'buoy-popup',
   props: {
     customClass: {
       type: String,
-      default: ""
+      default: ''
     },
     itemWidth: {
       type: Number,
       default: () => {
-        return 60;
+        return 60
       }
     },
     itemHeight: {
       type: Number,
       default: () => {
-        return 60;
+        return 60
       }
     },
     gapWidth: {
       type: Number,
       default: () => {
-        return 14;
+        return 14
       }
     },
     coefficientHeight: {
       type: Number,
       default: () => {
-        return 0.5;
+        return 0.5
       }
     },
     distanceMultiple: {
       type: Number,
       default: () => {
-        return 2;
+        return 2
       }
     },
     // 挂载到指定容器 默认body上
     getContainer: {
       type: [String, Function],
-      default: "body"
+      default: 'body'
     }
   },
   data() {
     return {
       left: 0,
       top: 0
-    };
+    }
   },
   mixins: [PortalMixin()],
   created() {
     // 初始化位置
-    this.clientWidth = document.documentElement.clientWidth;
-    this.clientHeight = document.documentElement.clientHeight;
+    this.clientWidth = document.documentElement.clientWidth
+    this.clientHeight = document.documentElement.clientHeight
     this.left =
-      this.clientWidth - this.itemWidth - this.gapWidth * this.distanceMultiple;
-    this.top = this.clientHeight * this.coefficientHeight;
+      this.clientWidth - this.itemWidth - this.gapWidth * this.distanceMultiple
+    this.top = this.clientHeight * this.coefficientHeight
   },
   methods: {
     clickEvent() {
-      this.$emit("clickEvent");
+      this.$emit('clickEvent')
     },
     ontouchstart(e) {
-      e.stopPropagation();
-      this.$refs.buoyPopup.style.transition = "none";
+      e.stopPropagation()
+      this.$refs.buoyPopup.style.transition = 'none'
     },
     ontouchmove(e) {
-      e.stopPropagation();
+      e.stopPropagation()
       if (e.targetTouches.length === 1) {
-        let touch = event.targetTouches[0];
-        let left = touch.clientX - this.itemWidth / 2;
-        let top = touch.clientY - this.itemHeight / 2;
+        let touch = event.targetTouches[0]
+        let left = touch.clientX - this.itemWidth / 2
+        let top = touch.clientY - this.itemHeight / 2
         if (touch.clientX - this.itemWidth / 2 < 0) {
-          left = 0;
+          left = 0
         } else if (touch.clientX + this.itemWidth / 2 > this.clientWidth) {
-          left = this.clientWidth - this.itemWidth;
+          left = this.clientWidth - this.itemWidth
         }
         if (touch.clientY - this.itemHeight / 2 < 0) {
-          top = 0;
+          top = 0
         } else if (touch.clientY + this.itemHeight / 2 > this.clientHeight) {
-          top = this.clientHeight - this.itemHeight;
+          top = this.clientHeight - this.itemHeight
         }
-        this.left = left;
-        this.top = top;
+        this.left = left
+        this.top = top
       }
     },
     ontouchend(e) {
-      e.stopPropagation();
-      this.$refs.buoyPopup.style.transition = "all 0.3s";
+      e.stopPropagation()
+      this.$refs.buoyPopup.style.transition = 'all 0.3s'
       if (this.left > this.clientWidth / 2) {
         this.left =
           this.clientWidth -
           this.itemWidth -
-          this.gapWidth * this.distanceMultiple;
+          this.gapWidth * this.distanceMultiple
       } else {
-        this.left = this.gapWidth;
+        this.left = this.gapWidth
       }
       if (this.top <= this.gapWidth) {
-        this.top = this.gapWidth * 2;
+        this.top = this.gapWidth * 2
       } else {
-        let bottom = this.clientHeight - this.itemHeight - this.gapWidth;
+        let bottom = this.clientHeight - this.itemHeight - this.gapWidth
         if (this.top >= bottom) {
-          this.top = bottom;
+          this.top = bottom
         }
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>

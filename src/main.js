@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router/index";
-import store from "./store/index";
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router/index'
+import store from './store/index'
 
 /*
  * export default 和 export 区别：
@@ -13,18 +13,18 @@ import store from "./store/index";
  */
 
 // 使用export导出
-import { buoyPopup } from "./../packages/index.js";
+import { buoyPopup } from './../packages/index.js'
 // 使用export default导出
-import customCom from "./../packages/index.js";
+import customCom from './../packages/index.js'
 
-Vue.use(buoyPopup);
-Vue.use(customCom.customToast);
-Vue.config.productionTip = false;
+Vue.use(buoyPopup)
+Vue.use(customCom.customToast)
+Vue.config.productionTip = false
 
-console.log(process.env);
+console.log(process.env)
 
 new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount("#app");
+}).$mount('#app')
