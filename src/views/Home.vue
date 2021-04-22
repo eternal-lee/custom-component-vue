@@ -22,6 +22,13 @@ export default {
     }
   },
   mounted() {
+    this.$showDialog()
+      .then(res => {
+        console.warn(res)
+      })
+      .catch(err => {
+        console.warn(err)
+      })
     this.$showMsgToast({ type: 'error', msg: 'error' })
   }
 }

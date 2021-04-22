@@ -13,12 +13,12 @@ import store from './store/index'
  */
 
 // 使用export导出
-import { buoyPopup } from './../packages/index.js'
+import { buoyPopup, customToast, dialog } from './../packages/index.js'
 // 使用export default导出
-import customCom from './../packages/index.js'
-
+// import customCom from './../packages/index.js'
+Vue.use(dialog)
 Vue.use(buoyPopup)
-Vue.use(customCom.customToast)
+Vue.use(customToast)
 Vue.config.productionTip = false
 
 console.log(process.env)

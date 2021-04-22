@@ -10,7 +10,8 @@
       width: itemWidth + 'px',
       height: itemHeight + 'px',
       left: left + 'px',
-      top: top + 'px'
+      top: top + 'px',
+      zIndex: zIndex
     }"
     ref="buoyPopup"
   >
@@ -26,6 +27,7 @@
  * distanceMultiple: 浮标距离右边框距离的倍数
  */
 import { PortalMixin } from './../mixins/portal'
+import { zIndexPlus } from '../zIndex/index'
 export default {
   name: 'buoy-popup',
   props: {
@@ -71,6 +73,7 @@ export default {
   },
   data() {
     return {
+      zIndex: zIndexPlus(),
       left: 0,
       top: 0
     }

@@ -1,5 +1,7 @@
 import buoyPopup from './buoyPopup/index.js'
 import customToast from './customToast/index.js'
+import dialog from './plugins/dialog/index.js'
+import plugins from './plugins/index'
 
 const components = { buoyPopup }
 
@@ -13,10 +15,12 @@ if (typeof window != 'undefined' && window.Vue) {
   install(window.Vue)
 }
 
-export { customToast, buoyPopup }
+export { customToast, dialog, buoyPopup, plugins }
 
 export default {
   install,
+  plugins,
   customToast,
+  dialog,
   ...components
 }
