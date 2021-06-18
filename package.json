@@ -1,6 +1,6 @@
 {
   "name": "custom-component-vue",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "description": "自定义vue组件",
   "main": "lib/custom-component-vue.umd.min.js",
@@ -10,7 +10,11 @@
     "vue",
     "custom-package",
     "buoyPopup"
-  ],
+  ],  
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rechard-work/custom-component-vue.git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build:dev": "vue-cli-service build --mode development",
