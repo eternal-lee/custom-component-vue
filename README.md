@@ -3,11 +3,11 @@
 ### Install
 
 ```
-npm i custom-component-vue -S
+npm i custom-component-vue@beta -S
 
 # OR
 
-yarn add custom-component-vue --dev
+yarn add custom-component-vue@beta --dev
 
 ```
 
