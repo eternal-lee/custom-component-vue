@@ -134,7 +134,20 @@ export default {
           this.top = bottom
         }
       }
+    },
+    removeEl() {
+      if (this.$el) this.$el.style.display = 'none'
+      if (document.body.contains(this.$el)) {
+        document.body.removeChild(this.$el)
+        this.$destroy('buoy-popup')
+      }
     }
+  },
+  destroyed() {
+    this.removeEl()
+  },
+  deactivated() {
+    this.removeEl()
   }
 }
 </script>
