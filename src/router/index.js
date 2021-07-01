@@ -1,24 +1,30 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-
-const Home = resolve => require(['@/views/Home.vue'], resolve)
-const About = resolve => require(['@/views/About.vue'], resolve)
-
-Vue.use(Router)
-
-export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
+import { createRouter, createWebHashHistory } from 'vue-router'
+import home from '@/views/index.vue'
+const routerHistory = createWebHashHistory()
+// createWebHashHistory hash 路由
+// createWebHistory history 路由
+// createMemoryHistory 带缓存 history 路由
+const router = createRouter({
+  history: routerHistory,
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      component: home
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About
+      path: '/home',
+      name: 'home',
+      component: home
+    },
+    {
+      redirect: '/home',
+      component: home
     }
   ]
 })
+
+// router.beforeEach((to, from) => {
+//    console.warn(to, from)
+// })
+ 
+export default router

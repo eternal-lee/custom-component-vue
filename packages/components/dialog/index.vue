@@ -1,10 +1,14 @@
 <template>
-  <div class="custom-dialog" :style="{ zIndex: zIndex }">
-    <div class="dialog_mask"></div>
+  <div class="custom-dialog" :style="{ zIndex: zIndex }" v-if="visible">
+    <div class="dialog_mask" @click="overlayHandle"></div>
     <div class="dialog_box" :style="{ zIndex: zIndexFunc(2) }">
       <div class="dialog_content">
-        <div class="custom-title" slot="title">{{ title }}</div>
-        <div class="custom-content center" slot="msg">{{ msg }}</div>
+        <div class="custom-title">
+          <slot name="title">{{ title }}</slot>
+        </div>
+        <div class="custom-content center">
+          <slot name="msg">{{ msg }}</slot>
+        </div>
       </div>
       <div class="custom-footer-box">
         <div
@@ -27,41 +31,80 @@
 </template>
 
 <script>
-import { zIndexPlus } from '../../zIndex/index'
+import { ref } from '@vue/reactivity'
+import { watch } from 'vue'
+import { zIndexPlus } from './../../zIndex/index'
 export default {
-  data() {
-    return {
-      title: '提示',
-      msg: '内容信息',
-      showCancelButton: true,
-      showConfirmButton: true,
-      confirmBtnText: '确认',
-      cancleBtnText: '取消',
-      zIndex: zIndexPlus()
+  name: 'cusDialog',
+  props: {
+    visible: {
+      type: Boolean
+    },
+    title: {
+      type: String
+    },
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: true
+    },
+    msg: {
+      type: String,
+      default: '内容信息'
+    },
+    showCancelButton: {
+      type: Boolean,
+      default: true
+    },
+    showConfirmButton: {
+      type: Boolean,
+      default: true
+    },
+    cancleBtnText: {
+      type: String,
+      default: '取消'
+    },
+    confirmBtnText: {
+      type: String,
+      default: '确认'
     }
   },
-  methods: {
-    zIndexFunc(zIndex) {
+  emits: ['cancleBtn', 'confirmBtn', 'onOk', 'onClose', 'update:visible'],
+  setup(props, context) {
+    const zIndex = ref(zIndexPlus())
+    const zIndexFunc = zIndex => {
       return zIndexPlus(zIndex)
-    },
-    doClose() {
-      this.$destroy()
-      if (document.body.contains(this.$el)) {
-        document.body.removeChild(this.$el)
+    }
+    const overlayHandle = () => {
+      if (!props.closeOnClickOverlay) return
+      cancleBtn()
+    }
+    const cancleBtn = () => {
+      context.emit('update:visible', false)
+      context.emit('onClose')
+    }
+
+    const confirmBtn = () => {
+      context.emit('onOk')
+    }
+    // 监听弹层v-model
+    watch(
+      () => props.visible,
+      val => {
+        context.emit('update:visible', val)
       }
-    },
-    cancleBtn() {
-      this.doClose()
-      this.callback('cancel')
-    },
-    confirmBtn() {
-      this.doClose()
-      this.callback('confirm')
+    )
+    return {
+      zIndex,
+      zIndexFunc,
+      overlayHandle,
+      cancleBtn,
+      confirmBtn
     }
   }
 }
 </script>
-<style scoped lang="less">
+
+<style lang="less">
 .custom-dialog {
   z-index: 1000;
   position: fixed;

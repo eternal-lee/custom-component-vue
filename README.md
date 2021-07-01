@@ -1,144 +1,82 @@
-## custom-component-vue
-
-### Install
-
-```
-npm i custom-component-vue@beta -S
-
-# OR
-
-yarn add custom-component-vue@beta --dev
-
-```
-
-### Usage
-
-#### Import and registry
-
-##### 方法一 (使用export default方式)
-```
-import customComVue from 'custom-component-vue'
-
-import 'custom-component-vue/lib/custom-component-vue.css'
-
-Vue.use(customComponent.customToast)
-
-Vue.use(customComVue.buoyPopup)
-
-// OR
-
-Vue.component('buoy-popup', customComVue.buoyPopup)
-
-```
-#### 方法二 (使用export方式)
-```
-import { buoyPopup, customToast } from 'custom-component-vue'
-
-import 'custom-component-vue/lib/custom-component-vue.css'
-
-Vue.use(customToast)
-
-Vue.use(buoyPopup)
-
-// OR
-
-Vue.component('buoy-popup', buoyPopup)
-
-```
-
-#### Wrap the content by buoyPopup
-
-### 组件内使用：
-
-```
-<buoy-popup></buoy-popup>
-```
-```
-this.$showMsgToast[`${type}`](msg)
-
-// OR 
-
-this.$showMsgToast({type: `${type}`,msg: `${msg]`)
-```
-### 组件模板：
-
-```
-<div
-  class="buoyPopup"
-  :class="addclass"
-  @click="clickEvent"
-  :style="{
-    width: itemWidth + 'px',
-    height: itemHeight + 'px',
-    left: left + 'px',
-    top: top + 'px'
-  }"
-  ref="buoyPopup"
->
-  <slot />
-</div>
-
-```
-
----
+# vue-app
 
 ## Project setup
-
 ```
-yarn install
+npm install
 ```
 
 ### Compiles and hot-reloads for development
-
 ```
-yarn serve
+npm run serve
 ```
 
 ### Compiles and minifies for production
-
 ```
-yarn build
+npm run build
 ```
 
 ### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+* 引入vant步骤：
+  * npm install vant --save
+  * npm install vant@next --save
+
+* babel-plugin-import 是一款 babel 插件，它会在编译过程中将 import 的写法自动转换为按需引入的方式：安装插件 npm i babel-plugin-import -D
+
+* 在babel.config.js文件里面加入
 
 ```
-yarn lint
+
+plugins: [
+  ['import', {
+    libraryName: 'vant',
+    libraryDirectory: 'es',
+    style: true
+  }, 'vant']
+]
 ```
 
-* 注意： 发布npm 需要先运行 -> npm run lib
+### vue eslint检测 Prettierrc
 
-## export default 和 export 区别：
+* 依赖：npm install @vue/cli-plugin-eslint babel-eslint eslint eslint-plugin-vue prettier prettier-eslint –-save-dev
 
-### 说明
+* 1、修改VsCode文件
+  * 点击文件-首选项-设置，在搜索框里输入Json即可看到修改配置：
+  ![https://pic3.zhimg.com/80/v2-ecacb793786b26974c96696b1fedba1e_720w.jpg](https://pic3.zhimg.com/80/v2-ecacb793786b26974c96696b1fedba1e_720w.jpg)
+  * 然后输入以下配置：
+  <pre><code>
+  {
+    "prettier.requireConfig": true,
+    "editor.formatOnSave": true
+  }
+  </code></pre>
+* 2、配置Prettierrc文件
+  * 在Vue的根目录下创建 ".prettierrc"文件，然后输入以下规范：
+  <pre><code>
+  module.exports = {
+    semi: false, // 行位是否使用分号，默认为true
+    trailingComma: 'es5', // 是否使用尾逗号，有三个可选值"<none|es5|all>"
+    singleQuote: true, //字符串是否使用单引号，默认为false，使用双引号
+    printWidth: 100, // 一行的字符数，如果超过会进行换行，默认为80
+    tabWidth: 4, // 一个tab代表几个空格数
+    useTabs: true, // 启用tab缩进
+    bracketSpacing: true, // 对象大括号直接是否有空格，默认为true，效果：{ foo: bar }
+  }
 
-1.export与export default均可用于导出常量、函数、文件、模块等
-
-2.你可以在其它文件或模块中通过import+(常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用
-
-3.在一个文件或模块中，export、import可以有多个，export default仅有一个
-
-4.通过export方式导出，在导入时要加{ }，export default则不需要
-
-```
-1.export
-//a.js
-export const str = "blablabla~";
-export function log(sth) { 
-  return sth;
-}
-对应的导入方式：
-
-//b.js
-import { str, log } from 'a'; //也可以分开写两次，导入的时候带花括号
-
-2.export default
-//a.js
-const str = "blablabla~";
-export default str;
-对应的导入方式：
-
-//b.js
-import str from 'a'; //导入的时候没有花括号
-
-```
+  {
+    "eslintIntegration": true,
+    "singleQuote": true,
+    "semi": false,
+    "endOfLine": "auto",
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "arrowParens": "avoid"
+  }
+  </code></pre>

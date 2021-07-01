@@ -2,14 +2,14 @@ import dialog from './dialog/index.js'
 
 const plugins = { dialog }
 
-const install = Vue => {
-  Object.keys(plugins).map(item => {
-    Vue.use(item)
-  })
-}
-// 如果是直接引入的
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
+const install = app => {
+  if (install.installed) return false
+  install.installed = true
+  for (const key in plugins) {
+    if (Object.prototype.hasOwnProperty.call(plugins, key)) {
+      app.use(plugins[key])
+    }
+  }
 }
 
 export { install, dialog }

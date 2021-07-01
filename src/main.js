@@ -1,30 +1,27 @@
-/* eslint-disable no-console */
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router/index'
-import store from './store/index'
+import './style/index.css'
+import router from './router'
+import store from './store'
+import axios from 'axios'
+import vueAxios from 'vue-axios'
 
-/*
- * export default 和 export 区别：
- * 1.export与export default均可用于导出常量、函数、文件、模块等
- * 2.你可以在其它文件或模块中通过import+(常量 | 函数 | 文件 | 模块)名的方式，将其导入，以便能够对其进行使用
- * 3.在一个文件或模块中，export、import可以有多个，export default仅有一个
- * 4.通过export方式导出，在导入时要加{ }，export default则不需要
- */
+import { Button, Popup } from 'vant'
+import 'vant/lib/index.css'
 
-// 使用export导出
-import { buoyPopup, customToast, dialog } from './../packages/index.js'
-// 使用export default导出
-// import customCom from './../packages/index.js'
-Vue.use(dialog)
-Vue.use(buoyPopup)
-Vue.use(customToast)
-Vue.config.productionTip = false
+import customComponentVue from './../packages/index'
 
-console.log(process.env)
+const app = createApp(App)
+app.use(router).use(store).use(vueAxios, axios)
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+app.use(Button).use(Popup)
+
+app.use(customComponentVue)
+
+app.config = {
+  NODE_ENV: process.env.NODE_ENV
+}
+app.config.globalProperties.$axios = axios
+
+console.warn('process.env.NODE_ENV', process.env.NODE_ENV)
+app.mount('#app')

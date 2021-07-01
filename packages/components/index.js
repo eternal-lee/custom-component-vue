@@ -1,5 +1,6 @@
-import components from "./components"
-import plugins from './plugins'
+import cusDialog from './dialog/index.vue'
+
+const components = { cusDialog }
 
 const install = app => {
   if (install.installed) return false
@@ -12,17 +13,7 @@ const install = app => {
   }
 }
 
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-}
-
-export {
-  components,
-  plugins
-}
-
 export default {
   install,
-  components,
-  plugins
+  ...components
 }
