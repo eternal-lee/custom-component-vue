@@ -10,6 +10,7 @@ import { Button, Popup } from 'vant'
 import 'vant/lib/index.css'
 
 import customComponentVue from './../packages/index'
+console.warn(customComponentVue)
 
 const app = createApp(App)
 app.use(router).use(store).use(vueAxios, axios)

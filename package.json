@@ -10,7 +10,7 @@
     "vue",
     "custom-package",
     "buoyPopup"
-  ],  
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:rechard-work/custom-component-vue.git"

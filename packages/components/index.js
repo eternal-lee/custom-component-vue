@@ -1,6 +1,7 @@
 import cusDialog from './dialog/index.vue'
+import buoyPopup from './buoyPopup'
 
-const components = { cusDialog }
+const components = { cusDialog, buoyPopup }
 
 const install = app => {
   if (install.installed) return false
