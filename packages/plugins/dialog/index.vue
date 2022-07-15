@@ -117,6 +117,7 @@ export default {
     align-items: center;
     text-align: center;
     height: 49px;
+    font-size: 16px;
     .footer-btn {
       flex: 1;
       height: 100%;

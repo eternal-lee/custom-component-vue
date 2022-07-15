@@ -1,6 +1,6 @@
 {
   "name": "custom-component-vue",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.7",
   "private": false,
   "description": "自定义vue组件",
   "main": "lib/custom-component-vue.umd.min.js",
