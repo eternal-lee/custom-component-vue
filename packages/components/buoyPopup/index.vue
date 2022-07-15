@@ -29,7 +29,7 @@
 import { PortalMixin } from './../../mixins/portal'
 import { zIndexPlus } from './../../zIndex/index'
 export default {
-  name: 'buoy-popup',
+  name: 'buoypopup',
   props: {
     customClass: {
       type: String,

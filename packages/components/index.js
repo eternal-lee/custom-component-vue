@@ -1,10 +1,12 @@
-import buoyPopup from './buoyPopup'
+import buoypopup from './buoyPopup'
+import cuspicker from './picker'
 
-const components = { buoyPopup }
+const components = { buoypopup, cuspicker }
 
-const install = (Vue, options) => {
+const install = function(Vue) {
   if (install.installed) return false
   install.installed = true
+
   for (const key in components) {
     if (components.hasOwnProperty(key)) {
       const component = components[key]
@@ -13,9 +15,11 @@ const install = (Vue, options) => {
   }
 }
 
-// 如果是直接引入的
-if (typeof window !== 'undefined' && window.Vue) {
+if (typeof window != 'undefined' && window.Vue) {
   install(window.Vue)
 }
 
-export default { install, ...components }
+export default {
+  install,
+  ...components
+}

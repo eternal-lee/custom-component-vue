@@ -3,25 +3,21 @@ import * as plugins from './plugins/index'
 
 import initRem from './utils/rem'
 
-let custUtils = {
+let utils = {
   components,
   plugins,
   initRem
 }
 
-const install = function(Vue) {
+const install = Vue => {
   Vue.use(components)
   Vue.use(plugins)
-  Vue.prototype.$custUtils = custUtils
-}
-
-if (typeof window != 'undefined' && window.Vue) {
-  install(window.Vue)
+  Vue.prototype.$utils = utils
 }
 
 export { components, plugins, initRem }
 
 export default {
-  ...custUtils,
+  ...utils,
   install
 }
