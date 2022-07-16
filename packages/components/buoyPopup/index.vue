@@ -26,10 +26,10 @@
  * coefficientHeight： 初始化top位置 位于屏幕高度%比
  * distanceMultiple: 浮标距离右边框距离的倍数
  */
-import { PortalMixin } from './../mixins/portal'
-import { zIndexPlus } from '../zIndex/index'
+import { PortalMixin } from './../../mixins/portal'
+import { zIndexPlus } from './../../zIndex/index'
 export default {
-  name: 'buoy-popup',
+  name: 'buoypopup',
   props: {
     customClass: {
       type: String,

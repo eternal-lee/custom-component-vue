@@ -124,6 +124,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      font-size: 16px;
     }
     .footer-left {
       color: #4da9ff;

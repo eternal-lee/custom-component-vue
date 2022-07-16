@@ -1,26 +1,23 @@
-import buoyPopup from './buoyPopup/index.js'
-import customToast from './customToast/index.js'
-import dialog from './plugins/dialog/index.js'
-import plugins from './plugins/index'
+import components from './components'
+import * as plugins from './plugins/index'
 
-const components = { buoyPopup }
+import initRem from './utils/rem'
 
-const install = function(Vue) {
-  Object.keys(components).map(component => {
-    Vue.component(component.name, component)
-  })
+let utils = {
+  components,
+  plugins,
+  initRem
 }
 
-if (typeof window != 'undefined' && window.Vue) {
-  install(window.Vue)
+const install = Vue => {
+  Vue.use(components)
+  Vue.use(plugins)
+  Vue.prototype.$utils = utils
 }
 
-export { customToast, dialog, buoyPopup, plugins }
+export { components, plugins, initRem }
 
 export default {
-  install,
-  plugins,
-  customToast,
-  dialog,
-  ...components
+  ...utils,
+  install
 }

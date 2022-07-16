@@ -17,6 +17,7 @@ const showToast = options => {
   options.isShow = true
   const instance = new ToastConstructor({
     el: document.createElement('div'),
+    name: 'customtoast',
     data: options
   })
   // 添加节点

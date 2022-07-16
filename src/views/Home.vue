@@ -9,7 +9,7 @@
     <h3>Installed CLI Plugins</h3>
     <h3>Essential Links</h3>
     <h3>Ecosystem</h3>
-    <buoy-popup class="fbuoypopup"></buoy-popup>
+    <buoypopup class="fbuoypopup"></buoypopup>
   </div>
 </template>
 

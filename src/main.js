@@ -12,16 +12,20 @@ import store from './store/index'
  * 4.通过export方式导出，在导入时要加{ }，export default则不需要
  */
 
+import { Field, Popup, Picker } from 'vant'
+
 // 使用export导出
-import { buoyPopup, customToast, dialog } from './../packages/index.js'
-// 使用export default导出
-// import customCom from './../packages/index.js'
-Vue.use(dialog)
-Vue.use(buoyPopup)
-Vue.use(customToast)
+import customUtils, { initRem } from './../packages/index.js'
+
+Vue.use(Field)
+Vue.use(Popup)
+Vue.use(Picker)
+Vue.use(customUtils)
+
 Vue.config.productionTip = false
 
 console.log(process.env)
+initRem()
 
 new Vue({
   router,
