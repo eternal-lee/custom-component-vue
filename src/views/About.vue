@@ -13,6 +13,7 @@
       v-model="showPicker"
       title="标题"
       :columns="columns"
+      :round="true"
       @onConfirm="onConfirm"
     >
       <div class="title" slot="title">标题</div>
