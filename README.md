@@ -21,9 +21,9 @@ import customComVue from 'custom-component-vue'
 
 import 'custom-component-vue/lib/custom-component-vue.css'
 
-Vue.use(customComponent.customToast)
+Vue.use(customComponent)
 
-Vue.use(customComVue.buoyPopup)
+Vue.use(customComVue)
 
 // OR
 

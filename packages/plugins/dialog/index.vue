@@ -45,9 +45,9 @@ export default {
       return zIndexPlus(zIndex)
     },
     doClose() {
-      this.$destroy()
       if (document.body.contains(this.$el)) {
         document.body.removeChild(this.$el)
+        this.$destroy(this.$options.name)
       }
     },
     cancleBtn() {

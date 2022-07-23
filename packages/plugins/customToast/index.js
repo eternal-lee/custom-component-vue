@@ -42,8 +42,8 @@ typeMap.map(type => {
   }
 })
 // 全局注册
-const registryToast = () => {
-  vue.prototype.$showMsgToast = showToast
+showToast.install = Vue => {
+  Vue.prototype.$showToast = showToast
 }
 
-export default registryToast
+export default showToast

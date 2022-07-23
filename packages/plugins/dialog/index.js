@@ -29,6 +29,13 @@ const showDialog = options => {
         return reject('cancel')
       }
     }
+
+    window.addEventListener('hashchange', () => {
+      _instance.doClose()
+    })
+    window.addEventListener('popstate', () => {
+      _instance.doClose()
+    })
   })
 }
 
