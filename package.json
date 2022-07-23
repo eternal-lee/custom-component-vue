@@ -11,6 +11,9 @@
     "custom-package",
     "buoyPopup"
   ],
+  "publishConfig": {
+    "@rechard-work:registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:rechard-work/custom-component-vue.git"
