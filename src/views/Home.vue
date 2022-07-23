@@ -29,7 +29,7 @@ export default {
       .catch(err => {
         console.warn(err)
       })
-    this.$showMsgToast({ type: 'error', msg: 'error' })
+    this.$showToast({ type: 'error', msg: 'error' })
   }
 }
 </script>

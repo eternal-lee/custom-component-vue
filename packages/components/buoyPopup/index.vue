@@ -139,7 +139,7 @@ export default {
       if (this.$el) this.$el.style.display = 'none'
       if (document.body.contains(this.$el)) {
         document.body.removeChild(this.$el)
-        this.$destroy('buoy-popup')
+        this.$destroy(this.$options.name)
       }
     }
   },
