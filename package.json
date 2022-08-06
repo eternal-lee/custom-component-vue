@@ -1,6 +1,6 @@
 {
   "name": "custom-component-vue",
-  "version": "0.0.1-beta.3",
+  "version": "3.0.0",
   "private": false,
   "description": "自定义vue组件",
   "main": "lib/custom-component-vue.umd.min.js",
@@ -17,9 +17,9 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:dev": "vue-cli-service build --mode development",
+    "build:dev": "vue-cli-service build --mode dev",
     "build:test": "vue-cli-service build --mode test",
-    "build:prod": "vue-cli-service build --mode test",
+    "build:prod": "vue-cli-service build --mode prod",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "lib": "vue-cli-service build --target lib --name custom-component-vue --dest lib packages/index.js"
