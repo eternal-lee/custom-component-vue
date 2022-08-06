@@ -2,6 +2,7 @@
 node_modules/
 src/
 public/
+packages/
 package-lock.json
 yarn.lock
 .env.development
