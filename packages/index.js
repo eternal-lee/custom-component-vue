@@ -1,5 +1,5 @@
-import components from "./components"
-import plugins from './plugins'
+import components from './components'
+import * as plugins from './plugins'
 
 const install = app => {
   if (install.installed) return false
@@ -10,6 +10,8 @@ const install = app => {
       app.component(component.name, component)
     }
   }
+  // 插件的使用use 
+  app.use(plugins)
 }
 
 if (typeof window !== 'undefined' && window.Vue) {

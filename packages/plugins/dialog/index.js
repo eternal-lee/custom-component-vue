@@ -1,21 +1,20 @@
 import { createApp } from 'vue'
-import DialogConstructor from './../../components/dialog'
+import DialogConstructor from './../../components/dialog/index.vue'
 
 let $inst
+let _install = null
 // 创建挂载实例
+const mountNode = document.createElement('div')
 let createMount = opts => {
-  const mountNode = document.querySelector('body')
   document.body.appendChild(mountNode)
 
-  const app = createApp(DialogConstructor, {
+  _install = createApp(DialogConstructor, {
     ...opts,
-    modelValue: true,
     remove() {
-      app.unmount(mountNode)
-      document.body.removeChild(mountNode)
+      $showDialog.hide()
     }
   })
-  return app.mount(mountNode)
+  return _install.mount(mountNode)
 }
 
 const $showDialog = (options = {}) => {
@@ -23,6 +22,12 @@ const $showDialog = (options = {}) => {
   $inst = createMount(options)
 
   return $inst
+}
+
+$showDialog.hide = () => {
+  _install.unmount()
+  document.body.removeChild(mountNode)
+  _install = null
 }
 
 $showDialog.install = app => {
