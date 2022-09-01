@@ -1,6 +1,7 @@
 import dialog from './dialog/index.js'
+import loading from './loading/index'
 
-const plugins = { dialog }
+const plugins = { dialog, loading }
 
 const install = app => {
   if (install.installed) return false
@@ -12,5 +13,5 @@ const install = app => {
   }
 }
 
-export { install, dialog }
-export default { install, dialog }
+export { install, dialog, loading }
+export default { install, ...plugins }

@@ -202,5 +202,6 @@ export default {
   position: fixed;
   border-radius: 50%;
   cursor: pointer;
+  background: #f0f;
 }
 </style>

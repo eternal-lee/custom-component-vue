@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-dialog" :style="{ zIndex: zIndex }" v-if="visible">
+  <div class="custom-dialog" :style="{ zIndex: zIndexNum }" v-if="visible">
     <div class="dialog_mask" @click="overlayHandle"></div>
     <div class="dialog_box" :style="{ zIndex: zIndexFunc(2) }">
       <div class="dialog_content">
@@ -31,8 +31,7 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
-import { watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { zIndexPlus } from './../../zIndex/index'
 export default {
   name: 'cusDialog',
@@ -51,6 +50,10 @@ export default {
       type: String,
       default: '内容信息'
     },
+    zIndex: {
+      type: Number,
+      default: 0
+    },
     showCancelButton: {
       type: Boolean,
       default: true
@@ -66,11 +69,24 @@ export default {
     confirmBtnText: {
       type: String,
       default: '确认'
+    },
+    onClickConfirm: {
+      type: Function,
+      default: () => Promise.resolve()
+    },
+    onClose: {
+      type: Function,
+      default: () => Promise.resolve()
+    },
+    remove: {
+      type: Function,
+      default: () => Promise.resolve()
     }
   },
-  emits: ['cancleBtn', 'confirmBtn', 'onOk', 'onClose', 'update:visible'],
-  setup(props, context) {
-    const zIndex = ref(zIndexPlus())
+  emits: ['update:visible'],
+  setup(props, { emit, attrs }) {
+    let { zIndex, onClickConfirm, onClose, remove } = reactive(props)
+    const zIndexNum = zIndex || ref(zIndexPlus())
     const zIndexFunc = zIndex => {
       return zIndexPlus(zIndex)
     }
@@ -78,23 +94,46 @@ export default {
       if (!props.closeOnClickOverlay) return
       cancleBtn()
     }
-    const cancleBtn = () => {
-      context.emit('update:visible', false)
-      context.emit('onClose')
+    const cancleBtn = async () => {
+      let _onClose = attrs.onOnClose || onClose
+      if (_onClose && typeof _onClose === 'function') {
+        try {
+          await _onClose()
+        } catch (e) {
+          return false
+        }
+      }
+      destoryDom()
     }
 
-    const confirmBtn = () => {
-      context.emit('onOk')
+    const confirmBtn = async () => {
+      let _onClickConfirm = attrs.onOnClickConfirm || onClickConfirm
+      if (_onClickConfirm && typeof _onClickConfirm === 'function') {
+        try {
+          await _onClickConfirm()
+        } catch (e) {
+          return false
+        }
+      }
+      destoryDom()
+    }
+
+    let destoryDom = async () => {
+      let _remove = attrs.remove || remove
+      if (_remove && typeof _remove === 'function') {
+        await _remove()
+      }
     }
     // 监听弹层v-model
     watch(
       () => props.visible,
       val => {
-        context.emit('update:visible', val)
+        emit('update:visible', val)
       }
     )
+
     return {
-      zIndex,
+      zIndexNum,
       zIndexFunc,
       overlayHandle,
       cancleBtn,
@@ -114,7 +153,7 @@ export default {
   height: 100%;
   box-sizing: border-box;
   .dialog_mask {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     position: absolute;
     left: 0;
     top: 0;
