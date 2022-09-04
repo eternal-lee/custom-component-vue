@@ -1,9 +1,15 @@
 <template>
   <div class="loading" v-show="visible" @click="close">
     <slot name="default">
+      <div class="middle">
+        <div class="loading-container">
+          <div class="loading-spinner">
+            <svg class="loading-circular" viewBox="25 25 50 50">
+              <circle cx="50" cy="50" r="20" fill="none" />
+            </svg>
+          </div>
+        </div>
       <div class="txt" v-if="title">{{ title }}</div>
-      <div class="loading_gif">
-        <img class="gif" src="./../../styles/loading.gif" alt="" />
       </div>
     </slot>
   </div>
@@ -53,15 +59,71 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .txt {
     color: #fff;
-    padding: 6px 15px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 12px;
   }
-  .loading_gif {
-    .gif {
-      width: 40px;
-      height: 40px;
+
+  &-container {
+    position: relative;
+    padding: 20px;
+    font-size: 0;
+    color: #c8c9cc;
+    vertical-align: middle;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+  }
+
+  &-spinner {
+    color: white;
+    position: relative;
+    width: 40px;
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+    animation: loading-rotate 0.8s linear infinite;
+    animation-duration: 2s;
+  }
+
+  &-circular {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    circle {
+      stroke: currentcolor;
+      stroke-linecap: round;
+      stroke-width: 3;
+      animation: loading-circular 1.5s ease-in-out infinite;
     }
+  }
+}
+@keyframes loading-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loading-circular {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120;
   }
 }
 </style>
