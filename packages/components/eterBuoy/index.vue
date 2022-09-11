@@ -18,11 +18,11 @@
   >
     <slot />
     <template v-if="closeIcon">
-      <slot name="close">
-        <div class="close" @click.stop="handleClickClose">
+      <div class="closeBox" @click.stop="handleClickClose">
+        <slot name="close">
           <i class="iconfont icon-close"></i>
-        </div>
-      </slot>
+        </slot>
+      </div>
     </template>
   </div>
 </template>
@@ -41,6 +41,7 @@ import {
   onActivated,
   onDeactivated,
   onMounted,
+  onUnmounted,
   reactive,
   ref
 } from 'vue'
@@ -180,10 +181,10 @@ export default {
     }
 
     let removeEl = () => {
+      isShow.value = false
       if (_self.$el) _self.$el.style.display = 'none'
       if (document.body.contains(_self.$el)) {
         document.body.removeChild(_self.$el)
-        _self.$destroy('buoy-popup')
       }
     }
 
@@ -192,6 +193,10 @@ export default {
     })
 
     onDeactivated(() => {
+      removeEl()
+    })
+
+    onUnmounted(() => {
       removeEl()
     })
 
@@ -224,7 +229,7 @@ export default {
   cursor: pointer;
   background: #f0f;
 
-  .close {
+  .closeBox {
     width: 14px;
     height: 14px;
     position: absolute;

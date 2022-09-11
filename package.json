@@ -1,6 +1,6 @@
 {
   "name": "eterl-ui",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": false,
   "description": "自定义vue组件",
   "main": "lib/eterl-ui.umd.min.js",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:eternal-lee/custom-component-vue.git"
+    "url": ""
   },
   "scripts": {
     "serve": "vue-cli-service serve",
