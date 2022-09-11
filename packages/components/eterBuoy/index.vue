@@ -134,7 +134,7 @@ export default {
     }
 
     let clickEvent = () => {
-      context.$emit('clickEvent')
+      context.emit('clickEvent')
     }
 
     let ontouchstart = e => {
@@ -182,7 +182,6 @@ export default {
 
     let removeEl = () => {
       isShow.value = false
-      if (_self.$el) _self.$el.style.display = 'none'
       if (document.body.contains(_self.$el)) {
         document.body.removeChild(_self.$el)
       }
