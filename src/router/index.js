@@ -19,6 +19,12 @@ const router = createRouter({
     {
       redirect: '/home',
       component: home
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () =>
+        import(/* webpackChunkName: "about" */ '../views/about.vue')
     }
   ]
 })
@@ -26,5 +32,5 @@ const router = createRouter({
 // router.beforeEach((to, from) => {
 //    console.warn(to, from)
 // })
- 
+
 export default router

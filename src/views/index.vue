@@ -42,7 +42,7 @@
       <template #msg> 我是内容，你是谁? </template>
     </eterDialog>
   </Teleport>
-  <eter-buoy></eter-buoy>
+  <eter-buoy :itemWidth="50"><template #close>as</template></eter-buoy>
 </template>
 
 <script>

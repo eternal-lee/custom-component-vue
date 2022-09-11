@@ -27,19 +27,19 @@ Vue.use(customComVue)
 
 ### 组件使用：
 
-[eterBuoy](./docs/eterBuoy.md):
+<p style="color: red;cursor: pointer">eterBuoy：</p>
 
 ```javascript
 <eter-buoy></eter-buoy>
 ```
 
-[eterDialog](./docs//eterDialog.md):
+<p style="color: red;cursor: pointer">eterDialog：</p>
 
 ```javascript
 <eterDialog />
 ```
 
-[eterRate](./docs//eterRate.md):
+<p style="color: red;cursor: pointer">eterRate：</p>
 
 ```javascript
 <eterRate v-model="" />
