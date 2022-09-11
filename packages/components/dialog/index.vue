@@ -34,13 +34,14 @@
 import { reactive, ref, watch } from 'vue'
 import { zIndexPlus } from './../../zIndex/index'
 export default {
-  name: 'cusDialog',
+  name: 'eterDialog',
   props: {
     visible: {
       type: Boolean
     },
     title: {
-      type: String
+      type: String,
+      default: '标题'
     },
     closeOnClickOverlay: {
       type: Boolean,
@@ -145,86 +146,96 @@ export default {
 
 <style lang="less">
 .custom-dialog {
-  z-index: 1000;
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
+
   .dialog_mask {
-    background: rgba(0, 0, 0, 0.5);
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(0, 0, 0, 50%);
   }
+
   .dialog_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     z-index: 1001;
     width: 80%;
     max-width: 500px;
-    border-radius: 4px;
     color: #212121;
     background: rgba(255, 255, 255);
-    position: absolute;
-    left: 50%;
-    top: 50%;
+    border-radius: 4px;
     transform: translate(-50%, -50%);
+
+    @media screen and (min-width: 600px) {
+      width: 400px;
+    }
+
     .dialog_content {
       padding: 17px 20px 0;
     }
+
     .custom-title {
-      text-align: center;
       font-family: PingFangSC-Medium;
       font-size: 18px;
       color: #212121;
+      text-align: center;
     }
+
     .custom-content {
+      padding: 21px 0 29px;
       font-family: PingFangSC-Regular;
       font-size: 16px;
       color: #212121;
       letter-spacing: 0;
-      padding: 21px 0 29px 0;
+
       &.center {
         text-align: center;
       }
     }
   }
+
   .custom-footer-box {
-    border-top: 1px solid #bdbdbd;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    text-align: center;
+    justify-content: center;
     height: 49px;
+    text-align: center;
+    border-top: 1px solid #bdbdbd;
+
     .footer-btn {
+      display: flex;
       flex: 1;
+      align-items: center;
+      justify-content: center;
       height: 100%;
       color: #212121;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
+
     .footer-left {
-      color: #4da9ff;
       position: relative;
       overflow: hidden;
+      color: #4da9ff;
+
       &::after {
-        content: '';
-        display: block;
         position: absolute;
         top: 0;
         right: 0;
-        -ms-transform-origin: 0 0;
-        -webkit-transform-origin: 0 0;
-        transform-origin: 0 0;
-        border: 1px solid #bdbdbd;
-        -ms-transform: scale(0.5) translateZ(0);
-        -webkit-transform: scale(0.5) translateZ(0);
-        transform: scale(0.5) translateZ(0);
+        display: block;
         height: 200%;
+        content: '';
+        border: 1px solid #bdbdbd;
+        transform: scale(0.5) translateZ(0);
+        transform-origin: 0 0;
       }
     }
   }

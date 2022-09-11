@@ -1,7 +1,8 @@
-import cusDialog from './dialog/index.vue'
-import buoyPopup from './buoyPopup'
+import eterDialog from './dialog/index.vue'
+import eterBuoy from './eterBuoy/index.vue'
+import eterRate from './eterRate/index.vue'
 
-const components = { cusDialog, buoyPopup }
+const components = { eterDialog, eterBuoy, eterRate }
 
 const install = app => {
   if (install.installed) return false

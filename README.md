@@ -1,82 +1,92 @@
-# vue-app
+# eterl-ui
 
-## Project setup
-```
-npm install
-```
+## Install
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+---
 
-### Compiles and minifies for production
-```
-npm run build
+Using npm to install:
+
+```javascript
+// 最新版本
+npm install eterl-ui
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Quick start
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+---
 
-* 引入vant步骤：
-  * npm install vant --save
-  * npm install vant@next --save
+<h3>Vue.js</h3>
+You can import in your main.js file
 
-* babel-plugin-import 是一款 babel 插件，它会在编译过程中将 import 的写法自动转换为按需引入的方式：安装插件 npm i babel-plugin-import -D
+```javascript
+import customComVue from 'eterl-ui'
+import 'eterl-ui/lib/eterl-ui.css'
 
-* 在babel.config.js文件里面加入
-
+Vue.use(customComVue)
 ```
 
-plugins: [
-  ['import', {
-    libraryName: 'vant',
-    libraryDirectory: 'es',
-    style: true
-  }, 'vant']
-]
+### 组件使用：
+
+[eterBuoy](./docs/eterBuoy.md):
+
+```javascript
+<eter-buoy></eter-buoy>
 ```
 
-### vue eslint检测 Prettierrc
+[eterDialog](./docs//eterDialog.md):
 
-* 依赖：npm install @vue/cli-plugin-eslint babel-eslint eslint eslint-plugin-vue prettier prettier-eslint –-save-dev
+```javascript
+<eterDialog />
+```
 
-* 1、修改VsCode文件
-  * 点击文件-首选项-设置，在搜索框里输入Json即可看到修改配置：
-  ![https://pic3.zhimg.com/80/v2-ecacb793786b26974c96696b1fedba1e_720w.jpg](https://pic3.zhimg.com/80/v2-ecacb793786b26974c96696b1fedba1e_720w.jpg)
-  * 然后输入以下配置：
-  <pre><code>
-  {
-    "prettier.requireConfig": true,
-    "editor.formatOnSave": true
-  }
-  </code></pre>
-* 2、配置Prettierrc文件
-  * 在Vue的根目录下创建 ".prettierrc"文件，然后输入以下规范：
-  <pre><code>
-  module.exports = {
-    semi: false, // 行位是否使用分号，默认为true
-    trailingComma: 'es5', // 是否使用尾逗号，有三个可选值"<none|es5|all>"
-    singleQuote: true, //字符串是否使用单引号，默认为false，使用双引号
-    printWidth: 100, // 一行的字符数，如果超过会进行换行，默认为80
-    tabWidth: 4, // 一个tab代表几个空格数
-    useTabs: true, // 启用tab缩进
-    bracketSpacing: true, // 对象大括号直接是否有空格，默认为true，效果：{ foo: bar }
-  }
+[eterRate](./docs//eterRate.md):
 
-  {
-    "eslintIntegration": true,
-    "singleQuote": true,
-    "semi": false,
-    "endOfLine": "auto",
-    "tabWidth": 2,
-    "trailingComma": "none",
-    "bracketSpacing": true,
-    "arrowParens": "avoid"
-  }
-  </code></pre>
+```javascript
+<eterRate v-model="" />
+```
+
+### 插件的使用
+
+#### [$eterDialog API 附件](./docs//eterDialog.md)
+
+##### Methods 方法
+
+```javascript
+// 显示
+_self.$eterDialog()
+// 隐藏弹窗
+_self.$eterDialog.hide()
+
+// OR
+let _dialog = _self.$eterDialog()
+
+_dialog.close()
+```
+
+#### $eterLoad() &emsp; API
+
+##### Methods 方法
+
+| 方法名 | 说明         | 参数    | 返回值 |
+| :----- | :----------- | :------ | ------ |
+| show   | 显示 loading | options |
+| close  | 隐藏 loading |         |
+
+```javascript
+$eterLoad() // $eterLoad.show()
+// 隐藏
+_self.$eterLoad.close()
+
+// OR
+let loading = _self.$eterLoad()
+
+loading.close()
+```
+
+##### Options 选项
+
+| 属性         | 说明                           | 类型   | 默认值             |
+| :----------- | :----------------------------- | :----- | ------------------ |
+| zIndex       | 指定 loading 组件 dom 元素层级 | number | `()=>zIndexPlus()` |
+| text         | 显示在加载图标下方的加载文案   | string |                    |
+| getContainer | 挂载到指定容器 默认 body 上    | string | `body`             |

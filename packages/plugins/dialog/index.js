@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import DialogConstructor from './../../components/dialog/index.vue'
 
-let $inst
 let _install = null
 // 创建挂载实例
 const mountNode = document.createElement('div')
@@ -11,27 +10,27 @@ let createMount = opts => {
   _install = createApp(DialogConstructor, {
     ...opts,
     remove() {
-      $showDialog.hide()
+      $eterDialog.hide()
     }
   })
   return _install.mount(mountNode)
 }
 
-const $showDialog = (options = {}) => {
+const $eterDialog = (options = {}) => {
   options.visible = true
-  $inst = createMount(options)
+  createMount(options)
 
-  return $inst
+  return $eterDialog
 }
 
-$showDialog.hide = () => {
-  _install.unmount()
-  document.body.removeChild(mountNode)
+$eterDialog.hide = () => {
+  _install && _install.unmount()
+  _install && document.body.removeChild(mountNode)
   _install = null
 }
 
-$showDialog.install = app => {
-  app.config.globalProperties.$showDialog = $showDialog
+$eterDialog.install = app => {
+  app.config.globalProperties.$eterDialog = $eterDialog
 }
 
-export default $showDialog
+export default $eterDialog

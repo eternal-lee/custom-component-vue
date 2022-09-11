@@ -1,5 +1,10 @@
 <template>
-  <div class="loading" v-show="visible" @click="close">
+  <div
+    class="loading"
+    :style="{ zIndex: zIndexNum }"
+    v-show="visible"
+    @click="close"
+  >
     <slot name="default">
       <div class="middle">
         <div class="loading-container">
@@ -9,28 +14,35 @@
             </svg>
           </div>
         </div>
-      <div class="txt" v-if="title">{{ title }}</div>
+        <div class="txt" v-if="text">{{ text }}</div>
       </div>
     </slot>
   </div>
 </template>
 
 <script>
+import { reactive, ref } from '@vue/reactivity'
+import { zIndexPlus } from './../../zIndex/index'
 export default {
   name: 'loading',
   props: {
     visible: {
       type: Boolean
     },
-    title: {
+    text: {
       type: String,
       default: () => {
-        return '加载中...'
+        return ''
       }
+    },
+    zIndex: {
+      type: Number
     }
   },
   emits: ['update:visible'],
   setup(props, { emit }) {
+    let { zIndex } = reactive(props)
+    const zIndexNum = zIndex || ref(zIndexPlus())
     function close() {
       emit('update:visible', false)
     }
@@ -40,6 +52,8 @@ export default {
     }
 
     return {
+      zIndexNum,
+
       close,
       hide
     }

@@ -1,9 +1,9 @@
 {
-  "name": "custom-component-vue",
-  "version": "3.0.2",
+  "name": "eterl-ui",
+  "version": "3.0.0",
   "private": false,
   "description": "自定义vue组件",
-  "main": "lib/custom-component-vue.umd.min.js",
+  "main": "lib/eterl-ui.umd.min.js",
   "license": "ISC",
   "keywords": [
     "custom-package-vue",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:rechard-work/custom-component-vue.git"
+    "url": "git@github.com:eternal-lee/custom-component-vue.git"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -22,11 +22,12 @@
     "build:prod": "vue-cli-service build --mode prod",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name custom-component-vue --dest lib packages/index.js"
+    "lib": "vue-cli-service build --target lib --name eterl-ui --dest lib packages/index.js"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "core-js": "^3.6.5",
+    "number-precision": "^1.5.2",
     "style-resources-loader": "^1.4.1",
     "vant": "^3.0.18",
     "vue": "^3.0.0",

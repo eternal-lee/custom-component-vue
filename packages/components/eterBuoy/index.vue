@@ -1,6 +1,7 @@
 <template>
   <div
-    class="buoyPopup"
+    v-if="isShow"
+    class="eterBuoy"
     :class="customClass"
     @click="clickEvent"
     @touchstart="ontouchstart"
@@ -13,9 +14,16 @@
       top: top + 'px',
       zIndex: zIndex
     }"
-    ref="buoyPopup"
+    ref="eterBuoy"
   >
     <slot />
+    <template v-if="closeIcon">
+      <slot name="close">
+        <div class="close" @click.stop="handleClickClose">
+          <i class="iconfont icon-close"></i>
+        </div>
+      </slot>
+    </template>
   </div>
 </template>
 
@@ -37,7 +45,7 @@ import {
   ref
 } from 'vue'
 export default {
-  name: 'buoy-popup',
+  name: 'eterBuoy',
   props: {
     customClass: {
       type: String,
@@ -77,6 +85,10 @@ export default {
     getContainer: {
       type: [String, Function],
       default: 'body'
+    },
+    closeIcon: {
+      type: Boolean,
+      default: true
     }
   },
   mixins: [PortalMixin()],
@@ -101,8 +113,10 @@ export default {
     let top = ref(0)
     let zIndex = ref(zIndexPlus())
 
+    let isShow = ref(true)
+
     let { proxy: _self } = getCurrentInstance()
-    
+
     onMounted(() => {
       // 初始化位置
       clientWidth = document.documentElement.clientWidth
@@ -114,13 +128,17 @@ export default {
       top.value = _top
     })
 
+    function handleClickClose() {
+      isShow.value = false
+    }
+
     let clickEvent = () => {
       context.$emit('clickEvent')
     }
 
     let ontouchstart = e => {
       e.stopPropagation()
-      _self.$refs.buoyPopup.style.transition = 'none'
+      _self.$refs.eterBuoy.style.transition = 'none'
     }
 
     function ontouchmove(e) {
@@ -145,7 +163,7 @@ export default {
     }
     function ontouchend(e) {
       e.stopPropagation()
-      _self.$refs.buoyPopup.style.transition = 'all 0.3s'
+      _self.$refs.eterBuoy.style.transition = 'all 0.3s'
       if (left.value > clientWidth / 2) {
         left.value = clientWidth - itemWidth - gapWidth * distanceMultiple
       } else {
@@ -160,7 +178,6 @@ export default {
         }
       }
     }
-
 
     let removeEl = () => {
       if (_self.$el) _self.$el.style.display = 'none'
@@ -184,7 +201,9 @@ export default {
       left,
       top,
       zIndex,
+      isShow,
 
+      handleClickClose,
       clickEvent,
       ontouchstart,
       ontouchmove,
@@ -195,13 +214,22 @@ export default {
 }
 </script>
 
-<style scoped>
-.buoyPopup {
+<style scoped lang="less">
+@import './../../styles/less/index.less';
+.eterBuoy {
   z-index: 20;
   transition: all 0.3s;
   position: fixed;
   border-radius: 50%;
   cursor: pointer;
   background: #f0f;
+
+  .close {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    right: -2px;
+    top: -6px;
+  }
 }
 </style>
