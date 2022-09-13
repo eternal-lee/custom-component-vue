@@ -1,15 +1,21 @@
 {
   "name": "eterl-ui",
-  "version": "3.0.1",
+  "version": "3.0.3",
   "private": false,
   "description": "自定义vue组件",
   "main": "lib/eterl-ui.umd.min.js",
   "license": "ISC",
   "keywords": [
-    "custom-package-vue",
+    "eter",
+    "eterl",
+    "eternal",
+    "eterl-ui",
+    "eterlui",
+    "eterlUI",
     "vue",
-    "custom-package",
-    "buoyPopup"
+    "eterBuoy",
+    "buoy",
+    "eterLoad"
   ],
   "repository": {
     "type": "git",
