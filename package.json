@@ -1,15 +1,19 @@
 {
-  "name": "eterl-ui",
-  "version": "3.0.1",
+  "name": "custom-component-vue",
+  "version": "3.0.3",
   "private": false,
   "description": "自定义vue组件",
-  "main": "lib/eterl-ui.umd.min.js",
+  "main": "lib/custom-component-vue.umd.min.js",
   "license": "ISC",
   "keywords": [
-    "custom-package-vue",
+    "custom",
+    "custom-component-vue",
     "vue",
-    "custom-package",
-    "buoyPopup"
+    "custom-component",
+    "eternal",
+    "eterl-buoy",
+    "eterl",
+    "eterl-ui"
   ],
   "repository": {
     "type": "git",
@@ -22,7 +26,7 @@
     "build:prod": "vue-cli-service build --mode prod",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name eterl-ui --dest lib packages/index.js"
+    "lib": "vue-cli-service build --target lib --name custom-component-vue --dest lib packages/index.js"
   },
   "dependencies": {
     "axios": "^0.21.4",

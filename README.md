@@ -1,4 +1,4 @@
-# eterl-ui
+# custom-component-vue
 
 ## Install
 
@@ -8,7 +8,7 @@ Using npm to install:
 
 ```javascript
 // 最新版本
-npm install eterl-ui
+npm install custom-component-vue
 ```
 
 ## Quick start
@@ -19,13 +19,15 @@ npm install eterl-ui
 You can import in your main.js file
 
 ```javascript
-import customComVue from 'eterl-ui'
-import 'eterl-ui/lib/eterl-ui.css'
+import customComVue from 'custom-component-vue'
+import 'custom-component-vue/lib/custom-component-vue.css'
 
 Vue.use(customComVue)
 ```
 
 ### 组件使用：
+
+#### 详情见依赖包docs文件夹
 
 <p style="color: red;cursor: pointer">eterBuoy：</p>
 
@@ -47,7 +49,7 @@ Vue.use(customComVue)
 
 ### 插件的使用
 
-#### [$eterDialog API 附件](./docs//eterDialog.md)
+#### $eterDialog API 附件
 
 ##### Methods 方法
 
