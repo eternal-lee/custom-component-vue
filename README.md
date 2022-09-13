@@ -47,7 +47,7 @@ Vue.use(customComVue)
 
 ### 插件的使用
 
-#### [$eterDialog API 附件](./docs//eterDialog.md)
+#### $eterDialog API 附件
 
 ##### Methods 方法
 
