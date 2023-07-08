@@ -15,7 +15,7 @@
           ref="wrapper"
           :style="wrapperStyle"
           @touchstart="onTouchStart"
-          @touchmove="onTouchMove"
+          @touchmove.prevent.stop="onTouchMove"
           @touchend="onTouchEnd"
         >
           <li
@@ -76,14 +76,14 @@ export default {
       default: 44
     }
   },
-  mixins: [TouchMixin],
+  emits: ['onTouchStart', 'onTouchMove', 'onTouchEnd', 'pickerChange'],
   setup(props, { emit }) {
     let { direction, deltaY, touchStart, touchMove } = TouchMixin()
-    let { swipeDuration, columns, visibleItemCount, itemHeight, defaultIndex } =
+    let { swipeDuration, columns, visibleItemCount, itemHeight } =
       reactive(props)
     let wrapper = ref(null)
 
-    let currentIndex = ref(defaultIndex)
+    let currentIndex = ref(0)
     let transitionEndTrigger = ref(null)
 
     let moving = ref(false)
@@ -116,14 +116,18 @@ export default {
       }
     })
 
-    watch(() => props.defaultIndex, val => {
-      setIndex(val)
-    }, {
-      immediate: true
-    })
+    watch(
+      () => props.defaultIndex,
+      val => {
+        setIndex(val)
+      },
+      {
+        immediate: true,
+        deep: true
+      }
+    )
 
     function onTouchStart(event) {
-      
       touchStart(event)
 
       if (moving.value) {
@@ -212,7 +216,7 @@ export default {
       }
 
       // trigger the change event after transitionend when moving
-      if (moving.value && offset !== offset.value) {
+      if (moving.value && _offset !== offset.value) {
         transitionEndTrigger.value = trigger
       } else {
         trigger()
@@ -223,6 +227,7 @@ export default {
     }
 
     function onClickItem(index) {
+      transitionEndTrigger.value = null
       duration.value = DEFAULT_DURATION
       setIndex(index, true)
     }
@@ -233,14 +238,16 @@ export default {
     }
 
     function stopMomentum() {
-      setTimeout(() => {
+      let timer = setTimeout(() => {
         moving.value = false
         duration.value = 0
 
         if (transitionEndTrigger.value) {
-          transitionEndTrigger.value()
+          let _trigger = transitionEndTrigger.value
+          _trigger()
           transitionEndTrigger.value = null
         }
+        clearTimeout(timer)
       }, duration.value + 100)
     }
 

@@ -3,11 +3,12 @@
     <h1>This is an about page</h1>
     <eter-buoy customClass="buoyPopup"></eter-buoy>
 
-    <eterPicker :defaultIndex='2' :columns="column" @pickerChange="handle">
+    <eterPicker :columns="column" @pickerChange="handle">
       <!-- <template #option="{ item }">
         <div class="aaa" style="height: 44px">{{ item }}</div>
       </template> -->
     </eterPicker>
+    选中的索引：{{ index }}
   </div>
 </template>
 
@@ -25,13 +26,15 @@ export default {
       '金华',
       '衢州'
     ])
+    let index = ref(0)
 
     function handle(idx) {
-      console.warn(idx)
+      index.value = idx
     }
 
     return {
       column,
+      index,
       handle
     }
   }
