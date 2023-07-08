@@ -3,7 +3,7 @@
     <h1>This is an about page</h1>
     <eter-buoy customClass="buoyPopup"></eter-buoy>
 
-    <eterPicker :columns="column">
+    <eterPicker :defaultIndex='2' :columns="column" @pickerChange="handle">
       <!-- <template #option="{ item }">
         <div class="aaa" style="height: 44px">{{ item }}</div>
       </template> -->
@@ -26,8 +26,13 @@ export default {
       '衢州'
     ])
 
+    function handle(idx) {
+      console.warn(idx)
+    }
+
     return {
-      column
+      column,
+      handle
     }
   }
 }

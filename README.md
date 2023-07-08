@@ -90,3 +90,14 @@ loading.close()
 | zIndex       | 指定 loading 组件 dom 元素层级 | number | `()=>zIndexPlus()` |
 | text         | 显示在加载图标下方的加载文案   | string |                    |
 | getContainer | 挂载到指定容器 默认 body 上    | string | `body`             |
+
+##### Picker Options 选项
+
+方法：@pickerChange 得到对应索引值
+
+| 属性             | 说明                           | 类型             | 默认值           |
+| :--------------- | :----------------------------- | :--------------- | ---------------- | --- |
+| defaultIndex     | 单列选择时，默认选中项的索引   | number \| string | 0                |
+| columns          | 对象数组，配置每一列显示的数据 | Column[]         | []               |
+| visibleItemCount | 可见的选项个数                 | string           | number \| string | 6   |
+| itemHeight       | 选项高度 px                    | number \| string | 44               |

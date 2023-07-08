@@ -43,7 +43,7 @@
 import { reactive, ref } from '@vue/reactivity'
 import TouchMixin from './../../mixins/touch'
 import { preventDefault, range, getElementTranslateY } from '../../mixins/utils'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
 const DEFAULT_DURATION = 200
 
@@ -116,14 +116,18 @@ export default {
       }
     })
 
+    watch(() => props.defaultIndex, val => {
+      setIndex(val)
+    }, {
+      immediate: true
+    })
+
     function onTouchStart(event) {
       
       touchStart(event)
 
-      console.warn('offset.value', offset.value)
       if (moving.value) {
         const translateY = getElementTranslateY(wrapper.value)
-        console.warn(translateY, baseOffset.value, 55555)
         offset.value = Math.min(0, translateY - baseOffset.value)
         startOffset.value = offset.value
       } else {
@@ -138,7 +142,6 @@ export default {
 
     function onTouchMove(event) {
       touchMove(event)
-      console.warn(startOffset.value, 'deltaY', deltaY.value)
 
       if (direction.value === 'vertical') {
         moving.value = true
@@ -165,7 +168,6 @@ export default {
         _duration < MOMENTUM_LIMIT_TIME &&
         Math.abs(distance) > MOMENTUM_LIMIT_DISTANCE
 
-      console.warn('allowMomentum', distance, _duration)
       if (allowMomentum) {
         momentum(distance, _duration)
         return
@@ -204,7 +206,7 @@ export default {
           currentIndex.value = index
 
           if (emitChange) {
-            emit('change', index)
+            emit('pickerChange', index)
           }
         }
       }
@@ -236,7 +238,7 @@ export default {
         duration.value = 0
 
         if (transitionEndTrigger.value) {
-          transitionEndTrigger()
+          transitionEndTrigger.value()
           transitionEndTrigger.value = null
         }
       }, duration.value + 100)
