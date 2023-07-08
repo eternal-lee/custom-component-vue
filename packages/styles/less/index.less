@@ -3,3 +3,36 @@
 .iconfont {
   font-size: 14px;
 }
+
+.border-top-1px(@color) {
+  &::before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid @color;
+    transform-origin: 0 top;
+  }
+}
+.border-right-1px(@color) {
+  &::after {
+    top: 0;
+    right: 0;
+    border-right: 1px solid @color;
+    transform-origin: right 0;
+  }
+}
+.border-bottom-1px(@color) {
+  &::after {
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid @color;
+    transform-origin: 0 bottom;
+  }
+}
+.border-left-1px(@color) {
+  &::before {
+    top: 0;
+    left: 0;
+    border-left: 1px solid @color;
+    transform-origin: left 0;
+  }
+}
