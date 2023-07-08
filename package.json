@@ -6,11 +6,19 @@
   "main": "lib/eterl-ui.umd.min.js",
   "license": "ISC",
   "keywords": [
-    "custom-package-vue",
+    "eter",
+    "eterl",
+    "eternal",
+    "eterl-ui",
+    "eterlui",
+    "eterlUI",
     "vue",
     "custom-package",
     "eterl",
-    "eterl-ui"
+    "eterl-ui",
+    "eterBuoy",
+    "buoy",
+    "eterLoad"
   ],
   "repository": {
     "type": "git",

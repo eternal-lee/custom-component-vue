@@ -47,7 +47,7 @@ Vue.use(customComVue)
 
 ### 插件的使用
 
-#### [$eterDialog API 附件](./docs//eterDialog.md)
+#### $eterDialog API 附件
 
 ##### Methods 方法
 
@@ -93,11 +93,11 @@ loading.close()
 
 ##### Picker Options 选项
 
-方法：@pickerChange 得到对应索引值
-
 | 属性             | 说明                           | 类型             | 默认值           |
 | :--------------- | :----------------------------- | :--------------- | ---------------- | --- |
 | defaultIndex     | 单列选择时，默认选中项的索引   | number \| string | 0                |
 | columns          | 对象数组，配置每一列显示的数据 | Column[]         | []               |
 | visibleItemCount | 可见的选项个数                 | string           | number \| string | 6   |
 | itemHeight       | 选项高度 px                    | number \| string | 44               |
+
+方法：@pickerChange 得到对应索引值
