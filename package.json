@@ -25,7 +25,9 @@
     "lib": "vue-cli-service build --target lib --name custom-component-vue --dest lib packages/index.js"
   },
   "dependencies": {
+    "axios": "^1.4.0",
     "core-js": "^2.6.5",
+    "echarts": "^4.9.0",
     "vant": "^2.12.48",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",

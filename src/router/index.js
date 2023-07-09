@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 const Home = resolve => require(['@/views/Home.vue'], resolve)
 const About = resolve => require(['@/views/About.vue'], resolve)
+const Map = resolve => require(['@/views/Map.vue'], resolve)
 
 Vue.use(Router)
 
@@ -19,6 +20,11 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '/map',
+      name: 'map',
+      component: Map
     }
   ]
 })
